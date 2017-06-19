@@ -7,6 +7,7 @@
 	<artifactId>application</artifactId>
 	<version>${nabu.web-application-version}</version>
 	<name>application</name>
+	<description>This module contains the core of everything web-related. It allows you to build sites, host microservices,...</description>
 	
 	<parent>
 		<groupId>be.nabu</groupId>
