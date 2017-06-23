@@ -1,0 +1,262 @@
+* {
+	box-sizing: border-box;	
+}
+
+body {
+	font-size: 16px;
+	font-family: 'Roboto', 'DejaVu Sans', 'Segoe UI', sans-serif;
+	margin: 0;
+	padding: 0;
+	.content {
+		width: 1024px;
+		margin: 2rem auto;
+		border: solid 1px #ccc;
+		box-shadow: 4px 4px 4px 4px #ccc;
+		padding: 5rem;
+		background-color: #fff;
+	}
+	background-color: #eaebed;
+}
+
+h1 {
+	border: solid 1px #ccc;
+	font-size: 1.6rem;
+	border-style: none none solid none;
+	margin: 2rem 0;
+	margin-top: 4rem;
+}
+section:first-child > h1 {
+	margin-top: 2rem;
+}
+.rest-methods {
+	.tag {
+		&:first-letter {
+			 text-transform: capitalize;
+		}
+		border: solid 1px #ccc;
+		font-size: 1.3rem
+		border-style: none none dashed none;
+		margin-top: 3rem;
+	}
+}
+.rest-method {
+	header+content {
+		display: none;
+	}
+	header.show+content {
+		display: block;
+		margin-bottom: 2rem;
+	}
+	header {
+		margin-top: 0;
+		cursor:pointer;
+		padding: 0;
+		position: relative;
+		&.get {
+			.summary {
+				background-color: #e7f0f7;
+				border-color: #c3d9ec;
+				.method {
+					background-color: #0f6ab4;
+					color: #fff;
+				}
+				.path {
+					color: #0f6ab4;
+				}
+			}
+		}
+		&.post {
+			.summary {
+				background-color: #e7f6ec;
+				border-color: #c3e8d1;
+				.method {
+					background-color: #10a54a;
+				}
+				.path {
+					color: #10a54a;
+				}
+			}
+		}
+		&.delete {
+			.summary {
+				background-color: #f5e8e8;
+				border-color: #e8c6c7;
+				.method {
+					background-color: #a41e22;
+				}
+				.path {
+					color: #a41e22;
+				}
+			}
+		}
+		&.put {
+			.summary {
+				background-color: #f0e0ca;
+				border-color: #f0e0ca;
+				.method {
+					background-color: #c5862b;
+				}
+				.path {
+					color: #c5862b;
+				}
+			}
+		}
+		.summary {
+			font-size: 1.1rem;
+			padding: 1rem;
+			border: solid 1px;
+			margin: 0;
+		}
+	}
+	.action {
+		position: relative;
+		background-color: #fafafa;
+		.method {
+			width: 6rem;
+			text-align: center;
+			text-transform: uppercase;
+			padding: 1rem;
+			font-size: 0.8rem;
+			font-weight: bold;
+			color: #333;
+			display: inline-block;
+			background-color: #eaeaea;
+		}
+		.path {
+			display: inline-block;
+			padding: 1.1rem;
+			font-size: 0.9rem;
+			color: #333;
+		}
+		.operationId {
+			right: 0;
+			position: absolute;
+			padding: 1.2rem;
+			font-size: 0.7rem;
+			color: #aaa;
+		}
+	}
+	.input, .output, .parameters {
+		padding: 1rem;
+		border: solid 1px #ccc;
+		margin: 1rem 1rem;
+		background-color: #fafafa;
+		border-radius: 10px;
+		font-size: 0.8rem;
+		color: #333;
+		list-style-type: circle;
+	}
+	.input {
+		&:before {
+			content: 'Input';
+			font-weight: bold;
+		}
+	}
+	.output {
+		&:before {
+			content: 'Output';
+			font-weight: bold;
+		}
+	}
+	.parameters {
+		&.query {
+			&:before {
+				content: 'Query';
+				font-weight: bold;
+			}
+		}
+		&.path {
+			&:before {
+				content: 'Path';
+				font-weight: bold;
+			}
+		}
+		&.header {
+			&:before {
+				content: 'Header';
+				font-weight: bold;
+			}
+		}
+	}
+	.input, .output {
+		cursor: pointer;
+		> .complex-type {
+			display: none;
+		}
+		&.show {
+			> .complex-type {
+				display: block;
+			}
+		}
+		> .simple-type {
+			&:before {
+				content: ': ';
+			}
+		}
+	}
+	.description {
+		padding: 1rem;
+		font-size: 0.9rem;
+	}
+	.simple-type+.description {
+		padding-left: 0;
+	}
+	.type + .description {
+		font-size: 0.7rem;
+		color: #666;
+	}
+	.list {
+		> .name {
+			&:before {
+				content: ' [] ';
+			}
+		}
+	}
+}
+
+.complex-type {
+	ul {
+		margin: 0.5rem 1rem;
+		list-style-type: circle;
+		li {
+			padding: 0.3rem;
+		}
+	}
+	.required {
+		> .name {
+			font-weight: bold;
+		}
+	}
+	.optional {
+		> .name {
+			font-style: italic;
+		}
+	}
+	.type {
+		margin: 0 0.7rem;
+		font-size: 0.8rem;
+		color: #aaa;
+		&.complex-type {
+			display: none;
+		}
+	}
+	.properties {
+		display: none;
+	}
+}
+
+
+@media print {
+	body {
+		background-color: #fff;
+		.content {
+			border: none;
+			box-shadow: none;
+			width: 100%;
+			padding: 1rem 2rem;
+			section {
+				page-break-inside: avoid;
+			}
+		}
+	}
+}

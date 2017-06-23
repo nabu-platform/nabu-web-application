@@ -1,0 +1,27 @@
+${{
+@get
+id ?= replace("\..*", "", environment("webApplicationId"))
+}}
+<html>
+	<head>
+		<title>Documentation: ${id}</title>
+		<link rel="stylesheet" type="text/css" href="${when(request.path() ~ '.*/index', 'css', request.path() + '/css')}?version=${environment('version')}">
+		<script>
+			function toggle(element) {
+				if (element.classList.contains("show")) {
+					element.classList.remove("show");	
+				}
+				else {
+					element.classList.add("show");	
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div class="content">
+${{
+echo(nabu.web.application.documentation.standard.generate(id)/result)
+}}
+		</div>
+	</body>
+</html>

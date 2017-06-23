@@ -1,0 +1,147 @@
+string id ?= null
+
+repository = lambda(be.nabu.eai.repository.EAIResourceRepository.getInstance())
+
+document = lambda(id, be.nabu.eai.repository.DocumentationManager.getDocumentation(repository(), id))
+generate = lambda(id, be.nabu.eai.repository.DocumentationManager.generateDocumentation(repository(), id))
+convert = lambda(text, fromType, nabu.web.wiki.Services.transform(text, when(fromType == null, "text/x-markdown", fromType), "text/html")/transformed/bytes)
+content = lambda(documentation, when(documentation/mimeType == "text/html", documentation/mimeType, convert(documentation/description, documentation/mimeType)))
+
+documentParams = lambda
+	params ?= null
+	location ?= "path"
+	
+	params = params[in = /location]
+	@return
+	result = ""
+	if (size(params) > 0)
+		result = result + "<section class='parameters " + location + "'><ul class='complex-type'>"
+		for (param : params)
+			multi = param/type == "array"
+			type = when(multi, param/items/type, param/type)
+			result = result + "<li class='" + when(multi, 'list', 'single') + " " + when(param/required == true, 'required', 'optional') + "'><span class='name'>" + param/name + "</span><span class='type simple-type'>" + type + "</span>"
+			
+		result = result + "</ul></section>"
+
+documentNode = lambda	
+	id ?= null
+	depth ?= 1
+	documentation = document(id)
+	@return
+	result = ""
+	if (documentation != null)
+		string title = when(documentation/title == null, id, documentation/title)
+		result = result + "<h" + depth + ">" + title + "</h" + depth + ">"
+		result = result + content(documentation)
+
+documentFolders = lambda
+	id ?= null
+	@return
+	result = ""
+	if (!nabu.utils.reflection.Node.get(id)/node/leaf)
+		depth ?= 1
+		result = documentNode(id, depth)
+		if (result != "")
+			result = "<section>" + result
+			for (child : filter(lambda(x, !x/leaf), nabu.utils.reflection.Node.list(id)/nodes))
+				result = result + documentFolders(child/id, depth + 1)
+			result = result + "</section>"
+		else
+			for (child : filter(lambda(x, !x/leaf), nabu.utils.reflection.Node.list(id)/nodes))
+				result = result + documentFolders(child/id, depth)
+
+getWebApplication = lambda
+	id ?= null
+	@return
+	webApplicationId = null
+	dependencies = nabu.utils.reflection.Node.dependencies(id)/nodes
+	for (node : dependencies)
+		if (node/artifactClass == "be.nabu.eai.module.web.application.WebApplication")
+			webApplicationId = node/id
+			break
+	if (webApplicationId == null)
+		for (node : dependencies)
+			webApplicationId = getWebApplication(node/id)
+			if (webApplicationId != null)
+				break
+
+documentRef = lambda
+	ref ?= null
+	swagger ?= null
+	@return
+	result = ""
+	# remove the leading #/definitions/
+	ref = string.substring(14, string: ref)
+	content = swagger/definitions[/ref]
+	if (content/type == "object")
+		result = generate(ref)/description
+	else if (content/format != null)
+		result = "<span class='simple-type'>" + content/format + "</span>"
+	else
+		result = "<span class='simple-type'>" + content/type + "</span>"
+		
+documentSwagger = lambda
+	id ?= null
+	depth ?= 1
+	@return
+	result = ""
+	# include the id itself as node, you could be targetting specifically
+	nodes = nabu.utils.reflection.Node.listByType(id, "be.nabu.eai.module.swagger.provider.SwaggerProvider")/nodes
+	node = nabu.utils.reflection.Node.get(id)/node
+	if (node/artifactClass == "be.nabu.eai.module.swagger.provider.SwaggerProvider")
+		nodes = merge(node, nodes)
+	for (node : nodes)
+		webApplicationId = getWebApplication(node/id)
+		result = result + "<section class='rest-methods'>"
+		result = result + documentNode(node/id, depth)
+		if (webApplicationId == null)
+			console("Could not find web application for swagger: " + node/id)
+		else
+			swagger = function(node/id)(webApplicationId)/swagger
+			parsed = json.objectify(swagger, raw: true)
+			methods = series()
+			for (path : keys(parsed/paths))
+				pathContent = parsed/paths[/path]
+				for (method : keys(pathContent))
+					methodContent = structure(pathContent[/method], path: path, method: method)
+					methods = merge(methods, methodContent)
+			
+			methods = group(lambda(x, when(x/tags == null, "Miscellaneous", x/tags[0])), methods)
+			for (tag : keys(methods))
+				tagMethods = methods[/tag]
+				result = result + "<h" + (depth + 1) + " class='tag'>" + tag + "</h" + (depth + 1) + ">"
+				for (method : tagMethods)	
+					result = result + "<section class='rest-method'><header onclick='toggle(this)' class='" + method/method + "'>"
+					result = result + "<h" + (depth + 2) + " class='summary'>" + when(method/summary != null, method/summary, method/operationId) + "</h" + (depth + 2) + ">"
+					result = result + "</header>"
+					result = result + "<content>"
+					result = result + "<div class='action'><span class='method'>" + method/method + "</span>"
+					result = result + "<span class='path'>" + when(parsed/basePath == "/", "", parsed/basePath) + method/path + "</span>"
+					result = result + "<span class='operationId'>" + method/operationId + "</span></div>"
+					
+					if (method/description != null)
+						result = result + "<div class='description'>" + convert(method/description) + "</div>"
+					
+					result = result + documentParams(method/parameters, "path")
+					result = result + documentParams(method/parameters, "query")
+					result = result + documentParams(method/parameters, "header")
+					
+					input = first(method/parameters[in == "body"]/schema/$ref)
+					if (input != null)
+						result = result + "<section class='input' onclick='toggle(this)'>"
+						result = result + documentRef(input, parsed)
+						result = result + "</section>"
+					
+					if (method/responses["200"]/schema/$ref != null)
+						result = result + "<section class='output' onclick='toggle(this)'>"
+						result = result + documentRef(method/responses["200"]/schema/$ref, parsed)
+						result = result + "</section>"
+					result = result + "</content></section>"
+					
+		result = result + "</section>"
+
+# we start by documenting the folders
+@return
+string result = documentFolders(id)
+
+result = result + documentSwagger(id)
