@@ -140,8 +140,46 @@ documentSwagger = lambda
 					
 		result = result + "</section>"
 
+documentSchedulers = lambda
+	id ?= null
+	depth ?= 1
+	complex = nabu.utils.reflection.Node.listByType(id, "be.nabu.eai.module.scheduler.complex.ComplexSchedulerArtifact")/nodes
+	simple = nabu.utils.reflection.Node.listByType(id, "be.nabu.eai.module.scheduler.simple.SimpleSchedulerArtifact")/nodes
+	
+	@return
+	result = ""
+	if (size(complex) > 0 || size(simple) > 0)
+		result = result + "<h" + depth + ">Schedulers</h" + depth + ">"
+		
+		for (scheduler : simple)
+			result = result + documentNode(scheduler/id, depth + 1)
+			result = result + generate(scheduler/id)/description
+			
+		for (scheduler : complex)
+			result = result + documentNode(scheduler/id, depth + 1)
+			result = result + generate(scheduler/id)/description
+
+documentChannels = lambda
+	id ?= null
+	depth ?= 1
+	@return
+	result = ""
+	channels = nabu.utils.reflection.Node.listByType(id, "be.nabu.libs.eai.module.channels.ChannelArtifact")/nodes
+	if (size(channels) > 0)
+		result = result + "<h" + depth + ">Channels</h" + depth + ">"
+		for (channel : channels)
+			result = result + documentNode(channel/id, depth + 1)
+			result = result + generate(channel/id)/description
+
 # we start by documenting the folders
 @return
 string result = documentFolders(id)
 
+# then the schedulers
+result = result + documentSchedulers(id)
+
+# then the channels
+result = result + documentChannels(id)
+
+# then the swagger files
 result = result + documentSwagger(id)

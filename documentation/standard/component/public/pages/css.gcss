@@ -28,16 +28,21 @@ h1 {
 section:first-child > h1 {
 	margin-top: 2rem;
 }
-.rest-methods {
-	.tag {
-		&:first-letter {
-			 text-transform: capitalize;
-		}
-		border: solid 1px #ccc;
-		font-size: 1.3rem
-		border-style: none none dashed none;
-		margin-top: 3rem;
+h2 {
+	&:first-letter {
+		 text-transform: capitalize;
 	}
+	border: solid 1px #ccc;
+	font-size: 1.3rem
+	border-style: none none dashed none;
+	margin-top: 3rem;
+}
+p {
+	padding: 0.7rem 0;
+	font-size: 0.9rem;
+}
+p+p {
+	padding-top: 0;
 }
 .rest-method {
 	header+content {
@@ -136,16 +141,6 @@ section:first-child > h1 {
 			color: #aaa;
 		}
 	}
-	.input, .output, .parameters {
-		padding: 1rem;
-		border: solid 1px #ccc;
-		margin: 1rem 1rem;
-		background-color: #fafafa;
-		border-radius: 10px;
-		font-size: 0.8rem;
-		color: #333;
-		list-style-type: circle;
-	}
 	.input {
 		&:before {
 			content: 'Input';
@@ -195,7 +190,7 @@ section:first-child > h1 {
 		}
 	}
 	.description {
-		padding: 1rem;
+		padding: 0.3rem;
 		font-size: 0.9rem;
 	}
 	.simple-type+.description {
@@ -214,12 +209,32 @@ section:first-child > h1 {
 	}
 }
 
-.complex-type {
+.input, .output, .parameters, .scheduler, .channel {
+	padding: 1rem;
+	border: solid 1px #ccc;
+	margin: 1rem 1rem;
+	background-color: #fafafa;
+	border-radius: 10px;
+	font-size: 0.8rem;
+	color: #333;
+	list-style-type: circle;
+}
+
+.complex-type, .scheduler, .channel {
 	ul {
 		margin: 0.5rem 1rem;
 		list-style-type: circle;
 		li {
 			padding: 0.3rem;
+			.key {
+				font-weight: bold;
+				&:after {
+					content: ': ';
+				}
+			}
+			.value {
+				margin-left: 0.3rem;
+			}
 		}
 	}
 	.required {
