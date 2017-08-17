@@ -1,0 +1,118 @@
+string id ?= null
+string downloadPath ?= server.root() + "documentation/attachment?path="
+
+repository = lambda(be.nabu.eai.repository.EAIResourceRepository.getInstance())
+
+generateRaw = lambda(id, "<raw>" + be.nabu.eai.repository.DocumentationManager.generateDocumentation(repository(), id)/description + "</raw>")
+convert = lambda(text, fromType, nabu.web.wiki.Services.transform(text, when(fromType == null, "text/x-markdown", fromType), "text/html")/transformed/bytes)
+content = lambda(documentation, when(documentation/mimeType == "text/html", documentation/mimeType, convert(documentation/description, documentation/mimeType)))
+stripAnnotations = lambda(x, replace("^@.+", "", x))
+
+convertLinks = lambda
+	@return
+	content ?= null
+	content = replace("\[\!:([^\]]+)\]", "<img src='" + downloadPath + "$1'/>", content)
+	content = replace("\[\!\$([^\|]+)\|([^\]]+)\]", "<a href='" + downloadPath + "$1'>$2</a>", content)
+	
+convertWithRaw = lambda
+	@return
+	content ?= null
+	# first we find all the raw blocks
+	raws = find("(?s)<raw>.*?</raw>", content)
+	codes = structure()
+	for (raw : raws)
+		code = uuid()
+		codes = structure(codes, lambda(code): replace("<[/]*raw>", "", raw))
+		content = replace(quoteRegex(raw), "----raw:" + code + "----", content)
+		
+	string content = convert(content)
+	for (code : keys(codes))
+		content = replace("(<p>|)" + quoteRegex("----raw:" + code + "----") + "(</p>|)", quoteReplacement(codes[/code]), content)
+
+
+# there are two methods: 
+# - embed: embeds content from local node (attachment or page)
+# - import: imports content from another node, we need to create a local version of embed then
+# imports content from another node
+import = lambda
+	string id ?= null
+	string fragment ?= "readme.md"
+	boolean attachment ?= false
+	
+	# ----------------- USABLE LAMBDAS
+	# make a local version
+	embed = lambda(fragment, import(id, fragment))
+	
+	# always generate as attachment
+	attach = lambda(fragment, import(id, fragment, true))
+
+	# return the interpreted description
+	description = lambda
+		target ?= id
+		@return
+		result = "<raw>" + content(be.nabu.eai.repository.DocumentationManager.getDocumentation(repository(), target)) + "</raw>"
+		
+	# return the title
+	title = lambda
+		target ?= id
+		depth ?= 1
+		@return
+		result = ""
+		if (be.nabu.eai.repository.DocumentationManager.getDocumentation(repository(), target)/title != null)
+			result = result + "<raw><h" + depth + ">" + be.nabu.eai.repository.DocumentationManager.getDocumentation(repository(), target)/title + "</h" + depth + "></raw>"
+	
+	# a generate lambda that defaults to the current artifact
+	generate = lambda
+		target ?= id
+		depth ?= 1
+		@return
+		result = title(target, depth) + import(target) + generateRaw(target)
+		
+	# returns an artifact
+	artifact = lambda
+		target ?= id
+		@return
+		result = repository()/resolve(target)
+	
+	# returns the xsd of a type
+	xsd = lambda
+		id ?= null
+		marshaller = instantiate("be.nabu.libs.types.definition.xsd.XSDDefinitionMarshaller")
+		output = instantiate("java.io.ByteArrayOutputStream")
+		type = artifact(id)
+		marshaller/marshal(output, type, series())
+		@return
+		string content = output/toByteArray()
+		
+	# returns a swagger
+	swagger = lambda
+		target ?= null
+		depth ?= 1
+		webApplicationId ?= null
+		@return
+		result = title(target, depth) + import(target) + nabu.web.application.documentation.standard.utils.generateSwagger(target, depth, webApplicationId)/result
+	
+	sql = lambda(x, artifact(x)/sql)
+	
+	scheduler = lambda(x, y, generate(x, y))
+	
+	channel = lambda(x, y, generate(x, y))
+	
+	@return
+	result = ""
+	
+	# we want a page
+	if (!attachment && fragment ~ ".*\.md")
+		if (exists("repository:" + id + ":/protected/documentation/" + fragment))
+			string result = template(stripAnnotations(read("repository:" + id + ":/protected/documentation/" + fragment)))
+			
+	# we want an image, insert a tag that can be resolved
+	else if (!attachment && fragment ~ "(?i).*\.(png|jpg|jpeg)")
+		result = "[!:repository:" + id + ":/protected/documentation/attachments/" + fragment + "]"
+	
+	# we want to embed a link to something
+	else
+		result = "[!$repository:" + id + ":/protected/documentation/attachments/" + fragment + "|" + fragment + "]"
+
+@return
+string result = convertLinks(convertWithRaw(import(id, "readme.md")))

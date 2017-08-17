@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><node artifactManager="be.nabu.eai.module.services.glue.GlueServiceManager" lastModified="2017-07-13T16:41:41.307+02:00" leaf="true" version="8"><environmentId>hyperion</environmentId><properties/><references>nabu.web.wiki.Services.transform</references></node>

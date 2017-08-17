@@ -1,0 +1,9 @@
+@get
+string path ?= null
+
+if (path ~ "^repository:.*:/protected/documentation/.*")
+	properties = nabu.utils.Resource.properties(path)/properties
+	response.header("Content-Disposition", "attachment;filename=\"" + replace(".*/", "", path) + "\"")
+	response.content(read(path), properties/contentType)
+else
+	response.code(404)

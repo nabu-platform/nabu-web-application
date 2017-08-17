@@ -1,0 +1,90 @@
+string id ?= null
+integer depth ?= 1
+string webApplicationId ?= nabu.web.application.documentation.standard.utils.getWebApplication(id)/webApplicationId
+
+repository = lambda(be.nabu.eai.repository.EAIResourceRepository.getInstance())
+generate = lambda(id, be.nabu.eai.repository.DocumentationManager.generateDocumentation(repository(), id))
+convert = lambda(text, fromType, nabu.web.wiki.Services.transform(text, when(fromType == null, "text/x-markdown", fromType), "text/html")/transformed/bytes)
+content = lambda(documentation, when(documentation/mimeType == "text/html", documentation/mimeType, convert(documentation/description, documentation/mimeType)))
+
+documentParams = lambda
+	params ?= null
+	location ?= "path"
+	
+	params = params[in = /location]
+	@return
+	result = ""
+	if (size(params) > 0)
+		result = result + "<section class='parameters " + location + "'><ul class='complex-type'>"
+		for (param : params)
+			multi = param/type == "array"
+			type = when(multi, param/items/type, param/type)
+			result = result + "<li class='" + when(multi, 'list', 'single') + " " + when(param/required == true, 'required', 'optional') + "'><span class='name'>" + param/name + "</span><span class='type simple-type'>" + type + "</span>"
+			
+		result = result + "</ul></section>"
+
+documentRef = lambda
+	ref ?= null
+	swagger ?= null
+	@return
+	result = ""
+	# remove the leading #/definitions/
+	ref = string.substring(14, string: ref)
+	content = swagger/definitions[/ref]
+	if (content/type == "object")
+		result = generate(ref)/description
+	else if (content/format != null)
+		result = "<span class='simple-type'>" + content/format + "</span>"
+	else
+		result = "<span class='simple-type'>" + content/type + "</span>"
+
+@return
+string result = ""
+
+result = result + "<section class='rest-methods'>"
+
+swagger = function(id)(webApplicationId)/swagger
+parsed = json.objectify(swagger, raw: true)
+methods = series()
+for (path : keys(parsed/paths))
+	pathContent = parsed/paths[/path]
+	for (method : keys(pathContent))
+		methodContent = structure(pathContent[/method], path: path, method: method)
+		methods = merge(methods, methodContent)
+
+methods = group(lambda(x, when(x/tags == null, "Miscellaneous", x/tags[0])), methods)
+for (tag : keys(methods))
+	tagMethods = methods[/tag]
+	result = result + "<h" + (depth + 1) + " class='tag'>" + tag + "</h" + (depth + 1) + ">"
+	for (method : tagMethods)	
+		result = result + "<section class='rest-method'><header onclick='toggle(this)' class='" + method/method + "'>"
+		result = result + "<h" + (depth + 2) + " class='summary'>" + when(method/summary != null, method/summary, method/operationId) + "</h" + (depth + 2) + ">"
+		result = result + "</header>"
+		result = result + "<content>"
+		result = result + "<div class='action'><span class='method'>" + method/method + "</span>"
+		result = result + "<span class='path'>" + when(parsed/basePath == "/", "", parsed/basePath) + method/path + "</span>"
+		result = result + "<span class='operationId'>" + method/operationId + "</span></div>"
+		
+		if (method/description != null && method/description !~ "[\s]+")
+			result = result + "<div class='description'>" + nabu.web.application.documentation.standard.generate2(method/operationId)/result + "</div>"
+		
+		result = result + documentParams(method/parameters, "path")
+		result = result + documentParams(method/parameters, "query")
+		result = result + documentParams(method/parameters, "header")
+		
+		input = first(method/parameters[in == "body"]/schema/$ref)
+		if (input != null)
+			result = result + "<section class='input' onclick='toggle(this)'>"
+			result = result + documentRef(input, parsed)
+			result = result + "</section>"
+		
+		if (method/responses["200"]/schema/$ref != null)
+			result = result + "<section class='output' onclick='toggle(this)'>"
+			result = result + documentRef(method/responses["200"]/schema/$ref, parsed)
+			result = result + "</section>"
+		result = result + "</content></section>"
+			
+result = result + "</section>"
+	
+if (result != "")
+	result = "<raw>" + result + "</raw>"

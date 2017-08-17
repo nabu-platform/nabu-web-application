@@ -1,0 +1,14 @@
+repository = lambda(be.nabu.eai.repository.EAIResourceRepository.getInstance())
+document = lambda(id, be.nabu.eai.repository.DocumentationManager.getDocumentation(repository(), id))
+convert = lambda(text, fromType, nabu.web.wiki.Services.transform(text, when(fromType == null, "text/x-markdown", fromType), "text/html")/transformed/bytes)
+content = lambda(documentation, when(documentation/mimeType == "text/html", documentation/mimeType, convert(documentation/description, documentation/mimeType)))
+
+string id ?= null
+integer depth ?= 1
+documentation = document(id)
+@return
+string result = ""
+if (documentation != null)
+	string title = when(documentation/title == null, id, documentation/title)
+	result = result + "<h" + depth + ">" + title + "</h" + depth + ">"
+	result = result + content(documentation)

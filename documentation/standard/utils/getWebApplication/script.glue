@@ -1,0 +1,14 @@
+string id ?= null
+@return
+string webApplicationId = null
+dependencies = nabu.utils.reflection.Node.dependencies(id)/nodes
+for (node : dependencies)
+	if (node/artifactClass == "be.nabu.eai.module.web.application.WebApplication")
+		webApplicationId = node/id
+		break
+
+#if (webApplicationId == null)
+#	for (node : dependencies)
+#		webApplicationId = nabu.web.application.documentation.standard.utils.getWebApplication(node/id)
+#		if (webApplicationId != null)
+#			break
