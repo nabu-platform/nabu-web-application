@@ -15,6 +15,48 @@ body {
 		padding: 5rem;
 		background-color: #fff;
 	}
+	.toc {
+		width: 250px;
+		position: fixed;
+		top: 0;
+		left: 0;
+		height: 100%;
+		overflow: auto;
+		padding: 1.5rem;
+		a {
+			display: block;
+			text-decoration: none;
+			padding: 0.2rem;
+			color: #0090FF;
+			white-space: nowrap;
+			cursor: pointer;
+			padding: 0.3rem 0;
+			&.toc-entry-1 {
+				font-size: 1.2rem;
+				font-weight: bold;
+			}
+			&.toc-entry-2 {
+				font-size: 1.0rem;
+				padding-left: 1rem;
+			}
+			&.toc-entry-3 {
+				font-size: 0.8rem;
+				padding-left: 2rem;
+			}
+			&.toc-entry-4 {
+				font-size: 0.7rem;
+				padding-left: 3rem;
+			}
+			&.toc-entry-5 {
+				font-size: 0.7rem;
+				padding-left: 4rem;
+			}
+			&.toc-entry-6 {
+				font-size: 0.7rem;
+				padding-left: 5rem;
+			}
+		}
+	}
 	background-color: #eaebed;
 }
 
@@ -209,7 +251,7 @@ p+p {
 	}
 }
 
-.input, .output, .parameters, .scheduler, .channel {
+.input, .output, .parameters, .scheduler, .channel, blockquote {
 	padding: 1rem;
 	border: solid 1px #ccc;
 	margin: 1rem 1rem;
@@ -260,6 +302,13 @@ p+p {
 	}
 }
 
+img {
+	border: solid 1px #ccc;
+	padding: 0.3rem;
+	margin: 1rem auto;
+	display: block;
+	max-width: 100%;
+}
 
 @media print {
 	body {
@@ -270,8 +319,127 @@ p+p {
 			width: 100%;
 			padding: 1rem 2rem;
 			section {
-				page-break-inside: avoid;
+				//page-break-inside: avoid;
+			}
+		}
+		.toc {
+			display: none;
+		}
+	}
+	.rest-method {
+		header+content {
+			display: block;
+		}
+		.operationId {
+			display: none;
+		}
+		.input, .output {
+			cursor: pointer;
+			> .complex-type {
+				display: block;
 			}
 		}
 	}
+	.input, .output, .parameters, .scheduler, .channel, blockquote, img {
+		page-break-inside: avoid;
+	}
+	ul {
+		display: block !important;
+	}
+}
+
+blockquote {
+	font-family: "Monospace";
+	font-size: 9pt;
+	white-space: pre-wrap;
+}
+
+// highlighting
+.code-keyword {
+	color: #7f0055;
+}
+.code-string {
+	color: #0000FF;
+}
+.code-comment {
+	color: #3f7f5f;
+}
+.xml-element {
+	color: #008080;
+}
+.xml-attribute {
+	color: #7f007f;
+}
+.code-label {
+	font-weight: bold !important;
+	color: #AAAAAA !important;
+}
+.code-method {
+	color: #008080;	
+}
+.code-assign {
+	color: #7f007f;	
+}
+
+// header counters
+body {
+	counter-reset: chapter1;
+}
+.content h1 {
+	counter-reset: chapter2;
+}
+.content {
+	$h1, h2, h3, h4, h5, h6, h7 {
+		&:before {
+			color: #666;
+			margin-right: 0.7rem;
+			background-color: #fafafa;
+			border: solid 1px #ccc;
+			text-align: center;
+			padding: 0.3rem 0.7rem;
+		}
+	}
+}
+.content h1:before {
+	content: counter(chapter1) ".";
+	counter-increment: chapter1;
+}
+.content h2 {
+	counter-reset: chapter3;
+}
+.content h2:before {
+	content: counter(chapter1) "." counter(chapter2);
+	counter-increment: chapter2;
+}
+.content h3 {
+	counter-reset: chapter4;
+}
+.content h3:before {
+	content: counter(chapter1) "." counter(chapter2) "." counter(chapter3);
+	counter-increment: chapter3;
+}
+.content h4 {
+	counter-reset: chapter5;
+}
+.content h4:before {
+	content: counter(chapter1) "." counter(chapter2) "." counter(chapter3) "." counter(chapter4);
+	counter-increment: chapter4;
+}
+.content h5 {
+	counter-reset: chapter6;
+}
+.content h5:before {
+	content: counter(chapter1) "." counter(chapter2) "." counter(chapter3) "." counter(chapter4) "." counter(chapter5);
+	counter-increment: chapter5;
+}
+.content h6 {
+	counter-reset: chapter7;
+}
+.content h6:before {
+	content: counter(chapter1) "." counter(chapter2) "." counter(chapter3) "." counter(chapter4) "." counter(chapter5) "." counter(chapter6);
+	counter-increment: chapter6;
+}
+.content h7:before {
+	content: counter(chapter1) "." counter(chapter2) "." counter(chapter3) "." counter(chapter4) "." counter(chapter5) "." counter(chapter6) "." counter(chapter7);
+	counter-increment: chapter7;
 }

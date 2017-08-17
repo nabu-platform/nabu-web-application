@@ -1,7 +1,6 @@
 string id ?= null
 
 repository = lambda(be.nabu.eai.repository.EAIResourceRepository.getInstance())
-
 document = lambda(id, be.nabu.eai.repository.DocumentationManager.getDocumentation(repository(), id))
 generate = lambda(id, be.nabu.eai.repository.DocumentationManager.generateDocumentation(repository(), id))
 convert = lambda(text, fromType, nabu.web.wiki.Services.transform(text, when(fromType == null, "text/x-markdown", fromType), "text/html")/transformed/bytes)
