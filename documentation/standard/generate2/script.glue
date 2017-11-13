@@ -5,6 +5,7 @@ repository = lambda(be.nabu.eai.repository.EAIResourceRepository.getInstance())
 
 generateRaw = lambda(id, "<raw>" + be.nabu.eai.repository.DocumentationManager.generateDocumentation(repository(), id)/description + "</raw>")
 convert = lambda(text, fromType, nabu.web.wiki.Services.transform(text, when(fromType == null, "text/x-markdown", fromType), "text/html")/transformed/bytes)
+
 content = lambda(documentation, when(documentation/mimeType == "text/html", documentation/mimeType, convert(documentation/description, documentation/mimeType)))
 stripAnnotations = lambda(x, replace("^@.+", "", x))
 
