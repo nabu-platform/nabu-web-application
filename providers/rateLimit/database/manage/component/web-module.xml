@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<webModule>
+    <webFragments>nabu.web.application.providers.rateLimit.database.crud.rateLimitRule.services.create</webFragments>
+    <webFragments>nabu.web.application.providers.rateLimit.database.crud.rateLimitRule.services.list</webFragments>
+    <webFragments>nabu.web.application.providers.rateLimit.database.crud.rateLimitRule.services.update</webFragments>
+    <webFragments>nabu.web.application.providers.rateLimit.database.crud.rateLimitInstance.services.list</webFragments>
+    <webFragments>nabu.web.application.providers.rateLimit.database.manage.rest.rateLimits</webFragments>
+    <webFragments>nabu.web.application.providers.rateLimit.database.manage.rest.applications</webFragments>
+</webModule>

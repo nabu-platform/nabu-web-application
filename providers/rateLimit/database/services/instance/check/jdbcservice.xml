@@ -1,0 +1,16 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<sql>select count(*) as amount,
+	min(rli.occurred) as oldest
+from ~rate_limit_instances rli
+-- check identity
+where ((:identity is null and rli.identity is null)
+		or (:identity is not null and rli.identity = :identity))
+	
+	-- check context
+	and ((:context is null and rli.context is null)
+		or (:context is not null and rli.context = :context))
+		
+	and (:since is null or rli.occurred &gt;= :since)
+	and (:ruleId is null or rli.rate_limit_rule_id = any(:ruleId))
+	and (:applicationId is null or rli.application_id = any(:applicationId))</sql>
+</jdbcService>

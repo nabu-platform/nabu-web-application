@@ -1,0 +1,3 @@
+<structure name="rateLimitList">
+    <structure definition="be.nabu.eai.module.web.application.api.RateLimit" maxOccurs="unbounded" minOccurs="0" name="rateLimits"/>
+</structure>

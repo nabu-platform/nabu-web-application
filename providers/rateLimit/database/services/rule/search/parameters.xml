@@ -1,0 +1,8 @@
+<structure name="parameter">
+    <field maxOccurs="unbounded" minOccurs="0" name="id" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" type="java.util.UUID"/>
+    <field maxOccurs="unbounded" minOccurs="0" name="applicationId" type="java.lang.String"/>
+    <field maxOccurs="unbounded" minOccurs="0" name="action" type="java.lang.String"/>
+    <field maxOccurs="unbounded" minOccurs="0" name="identityLimit" type="java.lang.String"/>
+    <field maxOccurs="unbounded" minOccurs="0" name="contextLimit" type="java.lang.String"/>
+    <field minOccurs="0" name="active" type="java.lang.Boolean"/>
+</structure>

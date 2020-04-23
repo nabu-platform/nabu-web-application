@@ -1,0 +1,4 @@
+<structure name="result">
+    <field name="amount" type="java.lang.Long"/>
+    <field name="oldest" timezone="UTC" type="java.util.Date"/>
+</structure>

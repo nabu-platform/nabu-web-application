@@ -1,0 +1,15 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.web.application.providers.rateLimit.database.types.rateLimitRule</outputDefinition>
+	<sql>select *
+from ~rate_limit_rules rlr
+where rlr.action is null
+	and (:applicationId is null or rlr.application_id = :applicationId)
+
+	-- check the identity limit
+	and ((:anonymous = true and rlr.identity_limit = 'anonymous')
+		or (:anonymous = false and rlr.identity_limit = 'token')
+		or (:hasIp = true and rlr.identity_limit = 'ip')
+		or rlr.identity_limit is null)
+		
+	and (:active is null or rlr.active = :active)</sql>
+</jdbcService>

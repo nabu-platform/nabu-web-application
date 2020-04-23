@@ -1,0 +1,11 @@
+<jdbcService xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<outputDefinition>nabu.web.application.providers.rateLimit.database.types.rateLimitRule</outputDefinition>
+	<sql>select *
+from ~rate_limit_rules rlr
+where (:id is null or rlr.id = any(:id))
+	and (:applicationId is null or rlr.application_id is null or rlr.application_id = any(:applicationId))
+	and (:action is null or rlr.action = any(:action))
+	and (:identityLimit is null or rlr.identity_limit = any(:identityLimit))
+	and (:contextLimit is null or rlr.context_limit = any(:contextLimit))
+	and (:active is null or rlr.active = :active)</sql>
+</jdbcService>

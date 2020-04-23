@@ -1,0 +1,3 @@
+<structure name="applicationList">
+    <structure definition="nabu.web.application.providers.rateLimit.database.manage.rest.application" maxOccurs="unbounded" minOccurs="0" name="applications"/>
+</structure>

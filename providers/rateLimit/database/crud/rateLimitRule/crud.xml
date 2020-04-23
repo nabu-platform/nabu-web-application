@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<crud>
+    <coreType>nabu.web.application.providers.rateLimit.database.types.rateLimitRule</coreType>
+    <createRole>manager</createRole>
+    <deleteRole>manager</deleteRole>
+    <filters>
+        <caseInsensitive>false</caseInsensitive>
+        <key>action</key>
+        <operator>ilike</operator>
+        <or>false</or>
+        <input>true</input>
+    </filters>
+    <filters>
+        <caseInsensitive>false</caseInsensitive>
+        <key>id</key>
+        <operator>=</operator>
+        <or>false</or>
+        <input>true</input>
+    </filters>
+    <filters>
+        <caseInsensitive>false</caseInsensitive>
+        <key>applicationId</key>
+        <operator>=</operator>
+        <or>false</or>
+        <input>true</input>
+    </filters>
+    <listRole>manager</listRole>
+    <provider>nabu.services.crud.provider.basic.provider</provider>
+    <updateBlacklistFields>action</updateBlacklistFields>
+    <updateBlacklistFields>contextLimit</updateBlacklistFields>
+    <updateBlacklistFields>identityLimit</updateBlacklistFields>
+    <updateBlacklistFields>applicationId</updateBlacklistFields>
+    <updateRole>manager</updateRole>
+    <useExplicitLanguage>false</useExplicitLanguage>
+    <useLanguage>false</useLanguage>
+</crud>

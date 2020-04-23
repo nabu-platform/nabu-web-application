@@ -1,0 +1,7 @@
+<structure interface="be.nabu.eai.module.web.application.api.RateLimitProvider.settings" name="pipeline">
+    <structure name="input"/>
+    <structure name="output"/>
+    <structure collectionName="rateLimitRules" definition="nabu.web.application.providers.rateLimit.database.types.rateLimitRule" maxOccurs="unbounded" minOccurs="0" name="rules"/>
+    <structure definition="be.nabu.eai.module.web.application.api.RateLimitSettings" minOccurs="0" name="setting"/>
+    <field name="ignoreRule" type="java.lang.Boolean"/>
+</structure>

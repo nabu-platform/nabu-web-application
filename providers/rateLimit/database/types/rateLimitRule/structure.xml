@@ -1,0 +1,12 @@
+<structure collectionName="rateLimitRules" name="rateLimitRule">
+    <field name="id" pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}" primaryKey="true" type="java.util.UUID"/>
+    <field comment="The web application this applies to. If not filled in, it applies to all." minOccurs="0" name="applicationId" type="java.lang.String"/>
+    <field comment="What identity to limit on, allowed values are &quot;ip&quot;, &quot;token&quot;, &quot;anonymous&quot;. &#10;If left open, it applies to everyone." minOccurs="0" name="identityLimit" type="java.lang.String"/>
+    <field comment="What we limit the calls on, valid values are &quot;action&quot;, &quot;context&quot;, &quot;actionAndContext&quot;. &#10;If left empty the identity is limited in general." minOccurs="0" name="contextLimit" type="java.lang.String"/>
+    <field comment="If the contextLimit is set to &quot;action&quot; or &quot;actionAndContext&quot;, you must specify the action here. The context is filled in at runtime." minOccurs="0" name="action" type="java.lang.String"/>
+    <field comment="An optional time interval. If left open, the rule counts for all calls ever." minOccurs="0" name="interval" type="java.lang.Long"/>
+    <field comment="How many calls can be made using this rule." name="amount" type="java.lang.Long"/>
+    <field comment="For historization reasons you can't update rules. &#10;We create new ones and disable older ones." name="active" type="java.lang.Boolean"/>
+    <field comment="A custom description for this rule" minOccurs="0" name="description" type="java.lang.String"/>
+    <field comment="A custom code for this rule, used to make eventing and logs more clear" minOccurs="0" name="code" type="java.lang.String"/>
+</structure>

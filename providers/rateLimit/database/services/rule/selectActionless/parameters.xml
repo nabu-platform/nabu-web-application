@@ -1,0 +1,6 @@
+<structure name="parameter">
+    <field minOccurs="0" name="applicationId" type="java.lang.String"/>
+    <field name="anonymous" type="java.lang.Boolean"/>
+    <field name="hasIp" type="java.lang.Boolean"/>
+    <field minOccurs="0" name="active" type="java.lang.Boolean"/>
+</structure>

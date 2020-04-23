@@ -1,0 +1,51 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		disabled="false"
+		id="2426f556-d237-487d-99bd-1c687ceff1a4">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="580b48bc-5823-401e-a8b9-73801964fdc2">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+				disabled="false"
+				id="eeca914e-58c7-4233-8b66-3aef499ad002"
+				serviceId="nabu.web.application.Services.rateLimits"
+				resultName="resultc6c1358331364a1c9de4d275ddd79c1f"
+				temporaryMapping="true"
+				x="17"
+				y="64"
+				invocationOrder="0"
+				asynchronous="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+					disabled="false"
+					id="d3e409cf-240c-46f5-b6a7-f2fd1945a18b"
+					mask="false"
+					optional="false"
+					fixedValue="false">
+				<from>input/path/applicationId</from>
+				<to>webApplicationId</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="14d59bc7-3c32-4af5-90e6-40ce8e02e7a4"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>resultc6c1358331364a1c9de4d275ddd79c1f/rateLimits</from>
+			<to>output/content/rateLimits</to>
+		</steps>
+	</steps>
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+			disabled="false"
+			id="dc51fe70-6a46-4d12-a8bf-bc59ebf73301"
+			label="input/query/q != null">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+				disabled="false"
+				id="7c706e72-8f50-4ae0-a3eb-33b8ba2ed6c5"
+				mask="false"
+				optional="false"
+				fixedValue="false">
+			<from>output/content/rateLimits[action ~ "(?i).*" + /input/query/q + ".*"]</from>
+			<to>output/content/rateLimits</to>
+		</steps>
+	</steps>
+</sequence>
