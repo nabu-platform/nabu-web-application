@@ -62,8 +62,8 @@ for (tag : keys(methods))
 		result = result + "</header>"
 		result = result + "<content>"
 		result = result + "<div class='action'><span class='method'>" + method/method + "</span>"
-		result = result + "<span class='path'>" + when(parsed/basePath == "/", "", parsed/basePath) + method/path + "</span>"
-		result = result + "<span class='operationId'>" + method/operationId + "</span></div>"
+		result = result + "<span class='path-container'><span class='path'>" + when(parsed/basePath == "/", "", parsed/basePath) + method/path + "</span>"
+		result = result + "<span class='operationId'>" + method/operationId + "</span></span></div>"
 		
 		if (method/description != null && method/description !~ "[\s]+")
 			result = result + "<div class='description'>" + nabu.web.application.documentation.standard.generate2(method/operationId)/result + "</div>"

@@ -1,0 +1,445 @@
+* {
+	box-sizing: border-box;	
+}
+
+body {
+	font-size: 16px;
+	font-family: 'Roboto', 'DejaVu Sans', 'Segoe UI', sans-serif;
+	margin: 0;
+	padding: 0;
+	.content {
+		width: 1024px;
+		margin: 2rem auto;
+		border: solid 1px #ccc;
+		box-shadow: 4px 4px 4px 4px #ccc;
+		padding: 5rem;
+		background-color: #fff;
+	}
+	.toc {
+		width: 250px;
+		position: fixed;
+		top: 0;
+		left: 0;
+		height: 100%;
+		overflow: auto;
+		padding: 1.5rem;
+		a {
+			display: block;
+			text-decoration: none;
+			padding: 0.2rem;
+			color: #0090FF;
+			white-space: nowrap;
+			cursor: pointer;
+			padding: 0.3rem 0;
+			&.toc-entry-1 {
+				font-size: 1.2rem;
+				font-weight: bold;
+			}
+			&.toc-entry-2 {
+				font-size: 1.0rem;
+				padding-left: 1rem;
+			}
+			&.toc-entry-3 {
+				font-size: 0.8rem;
+				padding-left: 2rem;
+			}
+			&.toc-entry-4 {
+				font-size: 0.7rem;
+				padding-left: 3rem;
+			}
+			&.toc-entry-5 {
+				font-size: 0.7rem;
+				padding-left: 4rem;
+			}
+			&.toc-entry-6 {
+				font-size: 0.7rem;
+				padding-left: 5rem;
+			}
+		}
+	}
+	background-color: #eaebed;
+}
+
+h1 {
+	border: solid 1px #ccc;
+	font-size: 1.6rem;
+	border-style: none none solid none;
+	margin: 2rem 0;
+	margin-top: 4rem;
+}
+section:first-child > h1 {
+	margin-top: 2rem;
+}
+h2 {
+	&:first-letter {
+		 text-transform: capitalize;
+	}
+	border: solid 1px #ccc;
+	font-size: 1.3rem
+	border-style: none none dashed none;
+	margin-top: 3rem;
+}
+p {
+	padding: 0.7rem 0;
+	font-size: 0.9rem;
+}
+p+p {
+	padding-top: 0;
+}
+.rest-method {
+	header+content {
+		display: none;
+	}
+	header.show+content {
+		display: block;
+		margin-bottom: 2rem;
+	}
+	header {
+		margin-top: 0;
+		cursor:pointer;
+		padding: 0;
+		position: relative;
+		&.get {
+			.summary {
+				background-color: #e7f0f7;
+				border-color: #c3d9ec;
+				.method {
+					background-color: #0f6ab4;
+					color: #fff;
+				}
+				.path {
+					color: #0f6ab4;
+				}
+			}
+		}
+		&.post {
+			.summary {
+				background-color: #e7f6ec;
+				border-color: #c3e8d1;
+				.method {
+					background-color: #10a54a;
+				}
+				.path {
+					color: #10a54a;
+				}
+			}
+		}
+		&.delete {
+			.summary {
+				background-color: #f5e8e8;
+				border-color: #e8c6c7;
+				.method {
+					background-color: #a41e22;
+				}
+				.path {
+					color: #a41e22;
+				}
+			}
+		}
+		&.put {
+			.summary {
+				background-color: #f0e0ca;
+				border-color: #f0e0ca;
+				.method {
+					background-color: #c5862b;
+				}
+				.path {
+					color: #c5862b;
+				}
+			}
+		}
+		.summary {
+			font-size: 1.1rem;
+			padding: 1rem;
+			border: solid 1px;
+			margin: 0;
+		}
+	}
+	.action {
+		position: relative;
+		background-color: #fafafa;
+		.method {
+			width: 6rem;
+			text-align: center;
+			text-transform: uppercase;
+			padding: 1rem;
+			font-size: 0.8rem;
+			font-weight: bold;
+			color: #333;
+			display: inline-block;
+			background-color: #eaeaea;
+		}
+		.path {
+			display: inline-block;
+			padding: 1.1rem;
+			font-size: 0.9rem;
+			color: #333;
+		}
+		.operationId {
+			right: 0;
+			position: absolute;
+			padding: 1.2rem;
+			font-size: 0.7rem;
+			color: #aaa;
+		}
+	}
+	.input {
+		&:before {
+			content: 'Input';
+			font-weight: bold;
+		}
+	}
+	.output {
+		&:before {
+			content: 'Output';
+			font-weight: bold;
+		}
+	}
+	.parameters {
+		&.query {
+			&:before {
+				content: 'Query';
+				font-weight: bold;
+			}
+		}
+		&.path {
+			&:before {
+				content: 'Path';
+				font-weight: bold;
+			}
+		}
+		&.header {
+			&:before {
+				content: 'Header';
+				font-weight: bold;
+			}
+		}
+	}
+	.input, .output {
+		cursor: pointer;
+		> .complex-type {
+			display: none;
+		}
+		&.show {
+			> .complex-type {
+				display: block;
+			}
+		}
+		> .simple-type {
+			&:before {
+				content: ': ';
+			}
+		}
+	}
+	.description {
+		padding: 0.3rem;
+		font-size: 0.9rem;
+	}
+	.simple-type+.description {
+		padding-left: 0;
+	}
+	.type + .description {
+		font-size: 0.7rem;
+		color: #666;
+	}
+	.list {
+		> .name {
+			&:before {
+				content: ' [] ';
+			}
+		}
+	}
+}
+
+.input, .output, .parameters, .scheduler, .channel, blockquote {
+	padding: 1rem;
+	border: solid 1px #ccc;
+	margin: 1rem 1rem;
+	background-color: #fafafa;
+	border-radius: 10px;
+	font-size: 0.8rem;
+	color: #333;
+	list-style-type: circle;
+}
+
+.complex-type, .scheduler, .channel {
+	ul {
+		margin: 0.5rem 1rem;
+		list-style-type: circle;
+		li {
+			padding: 0.3rem;
+			.key {
+				font-weight: bold;
+				&:after {
+					content: ': ';
+				}
+			}
+			.value {
+				margin-left: 0.3rem;
+			}
+		}
+	}
+	.required {
+		> .name {
+			font-weight: bold;
+		}
+	}
+	.optional {
+		> .name {
+			font-style: italic;
+		}
+	}
+	.type {
+		margin: 0 0.7rem;
+		font-size: 0.8rem;
+		color: #aaa;
+		&.complex-type {
+			display: none;
+		}
+	}
+	.properties {
+		display: none;
+	}
+}
+
+img {
+	border: solid 1px #ccc;
+	padding: 0.3rem;
+	margin: 1rem auto;
+	display: block;
+	max-width: 100%;
+}
+
+@media print {
+	body {
+		background-color: #fff;
+		.content {
+			border: none;
+			box-shadow: none;
+			width: 100%;
+			padding: 1rem 2rem;
+			section {
+				//page-break-inside: avoid;
+			}
+		}
+		.toc {
+			display: none;
+		}
+	}
+	.rest-method {
+		header+content {
+			display: block;
+		}
+		.operationId {
+			display: none;
+		}
+		.input, .output {
+			cursor: pointer;
+			> .complex-type {
+				display: block;
+			}
+		}
+	}
+	.input, .output, .parameters, .scheduler, .channel, blockquote, img {
+		page-break-inside: avoid;
+	}
+	ul {
+		display: block !important;
+	}
+}
+
+blockquote {
+	font-family: "Monospace";
+	font-size: 9pt;
+	white-space: pre-wrap;
+}
+
+// highlighting
+.code-keyword {
+	color: #7f0055;
+}
+.code-string {
+	color: #0000FF;
+}
+.code-comment {
+	color: #3f7f5f;
+}
+.xml-element {
+	color: #008080;
+}
+.xml-attribute {
+	color: #7f007f;
+}
+.code-label {
+	font-weight: bold !important;
+	color: #AAAAAA !important;
+}
+.code-method {
+	color: #008080;	
+}
+.code-assign {
+	color: #7f007f;	
+}
+
+// header counters
+body {
+	counter-reset: chapter1;
+}
+.content h1 {
+	counter-reset: chapter2;
+}
+.content {
+	$h1, h2, h3, h4, h5, h6, h7 {
+		&:before {
+			color: #666;
+			margin-right: 0.7rem;
+			background-color: #fafafa;
+			border: solid 1px #ccc;
+			text-align: center;
+			padding: 0.3rem 0.7rem;
+		}
+	}
+}
+.content h1:before {
+	content: counter(chapter1) ".";
+	counter-increment: chapter1;
+}
+.content h2 {
+	counter-reset: chapter3;
+}
+.content h2:before {
+	content: counter(chapter1) "." counter(chapter2);
+	counter-increment: chapter2;
+}
+.content h3 {
+	counter-reset: chapter4;
+}
+.content h3:before {
+	content: counter(chapter1) "." counter(chapter2) "." counter(chapter3);
+	counter-increment: chapter3;
+}
+.content h4 {
+	counter-reset: chapter5;
+}
+.content h4:before {
+	content: counter(chapter1) "." counter(chapter2) "." counter(chapter3) "." counter(chapter4);
+	counter-increment: chapter4;
+}
+.content h5 {
+	counter-reset: chapter6;
+}
+.content h5:before {
+	content: counter(chapter1) "." counter(chapter2) "." counter(chapter3) "." counter(chapter4) "." counter(chapter5);
+	counter-increment: chapter5;
+}
+.content h6 {
+	counter-reset: chapter7;
+}
+.content h6:before {
+	content: counter(chapter1) "." counter(chapter2) "." counter(chapter3) "." counter(chapter4) "." counter(chapter5) "." counter(chapter6);
+	counter-increment: chapter6;
+}
+.content h7:before {
+	content: counter(chapter1) "." counter(chapter2) "." counter(chapter3) "." counter(chapter4) "." counter(chapter5) "." counter(chapter6) "." counter(chapter7);
+	counter-increment: chapter7;
+}

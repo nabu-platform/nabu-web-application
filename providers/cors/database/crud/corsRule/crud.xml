@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<crud>
+    <coreType>nabu.web.application.providers.cors.database.types.corsRule</coreType>
+    <createRole>manager</createRole>
+    <deleteRole>manager</deleteRole>
+    <listRole>manager</listRole>
+    <provider>nabu.services.crud.provider.basic.provider</provider>
+    <updateRole>manager</updateRole>
+    <useExplicitLanguage>false</useExplicitLanguage>
+    <useLanguage>false</useLanguage>
+</crud>

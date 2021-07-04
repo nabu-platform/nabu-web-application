@@ -1,4 +1,5 @@
 ${{
+
 @get
 id ?= replace("\..*", "", environment("webApplicationId"))
 }}

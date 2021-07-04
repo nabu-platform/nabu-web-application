@@ -1,0 +1,2 @@
+By default it is denied, we need a rule that matches with allowed set specifically to true.
+If multiple rules target the same endpoint, the last rule wins, so be sure to set them from generic to specific

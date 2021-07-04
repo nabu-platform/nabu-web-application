@@ -6,4 +6,5 @@
     <webFragments>nabu.web.application.providers.rateLimit.database.crud.rateLimitInstance.services.list</webFragments>
     <webFragments>nabu.web.application.providers.rateLimit.database.manage.rest.rateLimits</webFragments>
     <webFragments>nabu.web.application.providers.rateLimit.database.manage.rest.applications</webFragments>
+    <audience>MANAGER</audience>
 </webModule>

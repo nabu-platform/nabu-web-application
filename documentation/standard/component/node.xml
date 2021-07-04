@@ -1,1 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><node artifactManager="be.nabu.eai.module.web.component.WebComponentManager" lastModified="2017-06-21T14:12:16.814+02:00" leaf="true" version="2"><environmentId>hyperion</environmentId><properties/></node>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<node artifactManager="be.nabu.eai.module.web.component.WebComponentManager" created="2021-02-13T14:38:25.667+01:00" lastModified="2021-02-13T15:09:11.587+01:00" leaf="true" version="4">
+    <environmentId>apollo</environmentId>
+    <hidden>false</hidden>
+    <properties/>
+</node>

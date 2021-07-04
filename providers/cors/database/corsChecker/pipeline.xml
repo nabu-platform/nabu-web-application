@@ -1,0 +1,8 @@
+<structure interface="be.nabu.eai.module.web.application.api.CORSHandler.check" name="pipeline">
+    <structure name="input"/>
+    <structure name="output"/>
+    <structure collectionName="corsRules" definition="nabu.web.application.providers.cors.database.crud.corsRule.types.output" maxOccurs="unbounded" minOccurs="0" name="rules"/>
+    <field minOccurs="0" name="allowed" type="java.lang.Boolean"/>
+    <field name="matches" type="java.lang.Boolean"/>
+    <field minOccurs="0" name="path" type="java.lang.String"/>
+</structure>

@@ -1,1 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><node artifactManager="be.nabu.eai.module.services.glue.GlueServiceManager" lastModified="2017-07-26T09:41:30.335+02:00" leaf="true" version="42"><environmentId>hyperion</environmentId><properties/><references>nabu.web.application.documentation.standard.generate2</references><references>nabu.web.wiki.Services.transform</references><references>nabu.web.application.documentation.standard.utils.getWebApplication</references></node>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<node artifactManager="be.nabu.eai.module.services.glue.GlueServiceManager" created="2021-02-13T15:51:24.900+01:00" lastModified="2021-02-13T15:52:40.188+01:00" leaf="true" version="46">
+    <environmentId>apollo</environmentId>
+    <hidden>false</hidden>
+    <properties/>
+    <references>nabu.web.application.documentation.standard.generate2</references>
+    <references>nabu.web.wiki.Services.transform</references>
+    <references>nabu.web.application.documentation.standard.utils.getWebApplication</references>
+</node>

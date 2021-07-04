@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<webModule>
+    <webFragments>nabu.web.application.providers.cors.database.crud.corsRule.services.update</webFragments>
+    <webFragments>nabu.web.application.providers.cors.database.crud.corsRule.services.list</webFragments>
+    <webFragments>nabu.web.application.providers.cors.database.crud.corsRule.services.get</webFragments>
+    <webFragments>nabu.web.application.providers.cors.database.crud.corsRule.services.delete</webFragments>
+    <webFragments>nabu.web.application.providers.cors.database.crud.corsRule.services.create</webFragments>
+</webModule>
