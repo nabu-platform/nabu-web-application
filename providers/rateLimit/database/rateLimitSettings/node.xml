@@ -1,1 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><node artifactManager="be.nabu.eai.module.services.vm.VMServiceManager" created="2020-04-23T10:21:46.458+02:00" lastModified="2020-04-23T20:16:43.989+02:00" leaf="true" version="68"><environmentId>apollo</environmentId><hidden>false</hidden><properties/><references>nabu.utils.List.add</references><references>nabu.web.application.providers.rateLimit.database.services.rule.selectActionless</references><references>nabu.web.application.providers.rateLimit.database.services.rule.search</references><references>be.nabu.libs.authentication.api.Device</references><references>be.nabu.libs.authentication.api.Token</references><references>nabu.utils.List.addAll</references><references>nabu.web.application.providers.rateLimit.database.types.rateLimitRule</references><references>nabu.utils.String.join</references><references>be.nabu.eai.module.web.application.api.RateLimitProvider.settings</references><references>be.nabu.eai.module.web.application.api.RateLimitSettings</references><references>java.lang.Boolean</references><references>java.lang.String</references><references>be.nabu.eai.module.http.virtual.api.Source</references></node>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<node artifactManager="be.nabu.eai.module.services.vm.VMServiceManager" created="2020-04-23T10:21:46.458+02:00" lastModified="2021-09-08T14:10:45.376+02:00" leaf="true" version="70">
+    <environmentId>apollo</environmentId>
+    <hidden>false</hidden>
+    <properties/>
+    <references>nabu.utils.List.add</references>
+    <references>nabu.web.application.providers.rateLimit.database.services.rule.selectActionless</references>
+    <references>nabu.web.application.providers.rateLimit.database.services.rule.search</references>
+    <references>be.nabu.libs.authentication.api.Device</references>
+    <references>be.nabu.libs.authentication.api.Token</references>
+    <references>nabu.utils.List.addAll</references>
+    <references>nabu.web.application.providers.rateLimit.database.types.rateLimitRule</references>
+    <references>nabu.utils.String.join</references>
+    <references>be.nabu.eai.module.web.application.api.RateLimitProvider.settings</references>
+    <references>be.nabu.eai.module.web.application.api.RateLimitSettings</references>
+    <references>java.lang.Boolean</references>
+    <references>java.lang.String</references>
+    <references>be.nabu.eai.module.http.virtual.api.Source</references>
+</node>

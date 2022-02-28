@@ -1,0 +1,6 @@
+string id ?= null
+
+repository = be.nabu.eai.repository.EAIResourceRepository.getInstance()
+
+@return
+string sql = repository/resolve(id)/sql

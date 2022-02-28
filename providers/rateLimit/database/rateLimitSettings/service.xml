@@ -14,7 +14,8 @@
 				x="64"
 				y="40"
 				invocationOrder="0"
-				asynchronous="false">
+				asynchronous="false"
+				recache="false">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
 					id="aa71bfde-7ff8-491d-acfd-c8d6bc617796"
@@ -76,7 +77,8 @@
 				x="76"
 				y="52"
 				invocationOrder="0"
-				asynchronous="false">
+				asynchronous="false"
+				recache="false">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
 					id="835d63e2-51db-4d24-869e-6cdaef428f4b"
@@ -114,7 +116,8 @@
 				x="294"
 				y="177"
 				invocationOrder="1"
-				asynchronous="false">
+				asynchronous="false"
+				recache="false">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
 					id="54b7d6bf-7612-4abb-ad85-d962a55370f1"
@@ -267,56 +270,77 @@
 							<to>ignoreRule</to>
 						</steps>
 					</steps>
-					<steps xsi:type="be.nabu.libs.services.vm.step.Map"
-							comment="Use the token as identity"
+					<steps xsi:type="be.nabu.libs.services.vm.step.Switch"
 							disabled="false"
-							id="9cfea778-f519-4b79-85c8-96d0ce905447">
-						<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
+							id="b7c4b15e-23dd-4f28-b69f-e6f8ded3de78"
+							query="input/token/authenticationId">
+						<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+								comment="Use the token as identity if there is no authentication id"
 								disabled="false"
-								id="58eec716-4326-40bd-bbc3-091b2fdf2184"
-								serviceId="nabu.utils.String.join"
-								resultName="result29acde1805054536b375eebf92a390cc"
-								temporaryMapping="true"
-								x="92"
-								y="138"
-								invocationOrder="0"
-								asynchronous="false">
-							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+								id="9cfea778-f519-4b79-85c8-96d0ce905447"
+								label="null">
+							<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 									disabled="false"
-									id="5b41abfc-50bd-47f7-9016-69692a7e15c7"
-									mask="false"
-									optional="false"
-									fixedValue="false">
-								<from>input/token/name</from>
-								<to>parts[1]</to>
+									id="58eec716-4326-40bd-bbc3-091b2fdf2184"
+									serviceId="nabu.utils.String.join"
+									resultName="result29acde1805054536b375eebf92a390cc"
+									temporaryMapping="true"
+									x="92"
+									y="138"
+									invocationOrder="0"
+									asynchronous="false"
+									recache="false">
+								<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+										disabled="false"
+										id="5b41abfc-50bd-47f7-9016-69692a7e15c7"
+										mask="false"
+										optional="false"
+										fixedValue="false">
+									<from>input/token/name</from>
+									<to>parts[1]</to>
+								</steps>
+								<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+										disabled="false"
+										id="b3d3e2ad-fac7-404d-9bf4-be174845f5d1"
+										mask="false"
+										optional="false"
+										fixedValue="false">
+									<from>input/token/realm</from>
+									<to>parts[0]</to>
+								</steps>
+								<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+										disabled="false"
+										id="cea358f7-e7bd-46e3-be55-17691afaaf26"
+										mask="false"
+										optional="false"
+										fixedValue="true">
+									<from>::</from>
+									<to>separator</to>
+								</steps>
 							</steps>
 							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 									disabled="false"
-									id="b3d3e2ad-fac7-404d-9bf4-be174845f5d1"
+									id="ecb54857-0fda-4603-a09d-615b2c7691fb"
 									mask="false"
 									optional="false"
 									fixedValue="false">
-								<from>input/token/realm</from>
-								<to>parts[0]</to>
-							</steps>
-							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
-									disabled="false"
-									id="cea358f7-e7bd-46e3-be55-17691afaaf26"
-									mask="false"
-									optional="false"
-									fixedValue="true">
-								<from>::</from>
-								<to>separator</to>
+								<from>result29acde1805054536b375eebf92a390cc/string</from>
+								<to>setting/identity</to>
 							</steps>
 						</steps>
-						<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+						<steps xsi:type="be.nabu.libs.services.vm.step.Map"
+								comment="We prefer the authentication id"
 								disabled="false"
-								id="ecb54857-0fda-4603-a09d-615b2c7691fb"
-								mask="false"
-								optional="false"
-								fixedValue="false">
-							<from>result29acde1805054536b375eebf92a390cc/string</from>
-							<to>setting/identity</to>
+								id="7bf403d5-5e41-4e39-827d-e643a067ecc7">
+							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
+									disabled="false"
+									id="2127d022-c39f-4038-babb-939f098886ab"
+									mask="false"
+									optional="false"
+									fixedValue="false">
+								<from>input/token/authenticationId</from>
+								<to>setting/identity</to>
+							</steps>
 						</steps>
 					</steps>
 				</steps>
@@ -458,7 +482,8 @@
 								x="33"
 								y="37"
 								invocationOrder="0"
-								asynchronous="false">
+								asynchronous="false"
+								recache="false">
 							<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 									disabled="false"
 									id="d885ab1d-1551-4d08-b99c-c3264c5f8894"
@@ -514,7 +539,8 @@
 					x="13"
 					y="48"
 					invocationOrder="0"
-					asynchronous="false">
+					asynchronous="false"
+					recache="false">
 				<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 						disabled="false"
 						id="ab84c4c9-6591-42e8-82d0-06cbf784b8da"

@@ -1,1 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><node artifactManager="be.nabu.eai.module.types.structure.StructureManager" created="2020-04-22T21:40:28.296+02:00" lastModified="2020-04-23T16:51:35.339+02:00" leaf="true" version="16"><environmentId>apollo</environmentId><hidden>false</hidden><properties/><references>java.util.UUID</references><references>java.lang.String</references><references>java.util.Date</references></node>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<node artifactManager="be.nabu.eai.module.types.structure.StructureManager" created="2020-04-22T21:40:28.296+02:00" lastModified="2021-09-08T13:13:23.240+02:00" leaf="true" version="18">
+    <environmentId>apollo</environmentId>
+    <hidden>false</hidden>
+    <properties/>
+    <references>java.util.UUID</references>
+    <references>nabu.web.application.providers.rateLimit.database.types.rateLimitRule</references>
+    <references>java.lang.String</references>
+    <references>java.util.Date</references>
+</node>
