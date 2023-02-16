@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<crud>
+    <allowHeaderAsQueryParameter>true</allowHeaderAsQueryParameter>
+    <broadcastCreate>false</broadcastCreate>
+    <broadcastUpdate>false</broadcastUpdate>
+    <coreType>nabu.web.application.providers.rateLimit.database.types.rateLimitInstance</coreType>
+    <createPermission>rateLimit.manage</createPermission>
+    <createRole>$user</createRole>
+    <deletePermission>rateLimit.manage</deletePermission>
+    <deleteRole>$user</deleteRole>
+    <getPermission>rateLimit.list</getPermission>
+    <listPermission>rateLimit.list</listPermission>
+    <listRole>$user</listRole>
+    <provider>nabu.services.crud.provider.basic.provider</provider>
+    <restLimitToUser>true</restLimitToUser>
+    <updatePermission>rateLimit.manage</updatePermission>
+    <updateRole>$user</updateRole>
+    <useExplicitLanguage>false</useExplicitLanguage>
+    <useGlobalPermissionContext>false</useGlobalPermissionContext>
+    <useLanguage>false</useLanguage>
+    <useListOutputForCreate>false</useListOutputForCreate>
+    <useListOutputForUpdate>false</useListOutputForUpdate>
+    <useProjectAsPermissionContext>false</useProjectAsPermissionContext>
+    <useServiceContextAsPermissionContext>true</useServiceContextAsPermissionContext>
+    <useWebApplicationAsPermissionContext>false</useWebApplicationAsPermissionContext>
+</crud>

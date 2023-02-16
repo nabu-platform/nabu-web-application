@@ -1,9 +1,11 @@
 <sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		disabled="false"
-		id="2426f556-d237-487d-99bd-1c687ceff1a4">
+		id="2426f556-d237-487d-99bd-1c687ceff1a4"
+		lineNumber="1">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
-			id="580b48bc-5823-401e-a8b9-73801964fdc2">
+			id="580b48bc-5823-401e-a8b9-73801964fdc2"
+			lineNumber="2">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke"
 				disabled="false"
 				id="eeca914e-58c7-4233-8b66-3aef499ad002"
@@ -13,7 +15,8 @@
 				x="17"
 				y="64"
 				invocationOrder="0"
-				asynchronous="false">
+				asynchronous="false"
+				recache="false">
 			<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 					disabled="false"
 					id="d3e409cf-240c-46f5-b6a7-f2fd1945a18b"
@@ -37,7 +40,8 @@
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map"
 			disabled="false"
 			id="dc51fe70-6a46-4d12-a8bf-bc59ebf73301"
-			label="input/query/q != null">
+			label="input/query/q != null"
+			lineNumber="3">
 		<steps xsi:type="be.nabu.libs.services.vm.step.Link"
 				disabled="false"
 				id="7c706e72-8f50-4ae0-a3eb-33b8ba2ed6c5"

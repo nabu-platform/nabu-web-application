@@ -1,1 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><node artifactManager="be.nabu.eai.module.services.jdbc.JDBCServiceManager" created="2020-04-23T10:36:19.260+02:00" lastModified="2020-04-23T16:53:06.741+02:00" leaf="false" version="13"><environmentId>apollo</environmentId><hidden>false</hidden><properties/><references>java.lang.String</references><references>java.lang.Long</references><references>java.lang.Integer</references><references>java.lang.Boolean</references><references>be.nabu.libs.types.api.KeyValuePair</references><references>nabu.web.application.providers.rateLimit.database.types.rateLimitRule</references><references>java.lang.Long</references><references>java.lang.Boolean</references></node>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<node artifactManager="be.nabu.eai.module.services.jdbc.JDBCServiceManager" created="2020-04-23T10:36:19.260+02:00" deprecated="2022-11-28T10:41:57.823+01:00" lastModified="2020-04-23T16:53:06.741+02:00" leaf="false" version="13">
+    <environmentId>apollo</environmentId>
+    <hidden>false</hidden>
+    <locked>false</locked>
+    <properties/>
+    <references>java.lang.String</references>
+    <references>java.lang.Long</references>
+    <references>java.lang.Integer</references>
+    <references>java.lang.Boolean</references>
+    <references>be.nabu.libs.types.api.KeyValuePair</references>
+    <references>nabu.web.application.providers.rateLimit.database.types.rateLimitRule</references>
+    <references>java.lang.Long</references>
+    <references>java.lang.Boolean</references>
+</node>

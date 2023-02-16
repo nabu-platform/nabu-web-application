@@ -1,1 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><node artifactManager="be.nabu.eai.module.services.crud.CRUDArtifactManager" created="2020-04-23T10:22:46.290+02:00" lastModified="2020-04-23T16:43:03.614+02:00" leaf="false" version="4"><environmentId>apollo</environmentId><hidden>false</hidden><properties/><references>nabu.web.application.providers.rateLimit.database.types.rateLimitInstance</references><references>nabu.services.crud.provider.basic.provider</references></node>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<node artifactManager="be.nabu.eai.module.services.crud.CRUDArtifactManager" created="2020-04-23T10:22:46.290+02:00" deprecated="2022-11-28T10:41:57.764+01:00" lastModified="2020-04-23T16:43:03.614+02:00" leaf="false" version="4">
+    <environmentId>apollo</environmentId>
+    <hidden>false</hidden>
+    <locked>false</locked>
+    <properties/>
+    <references>nabu.web.application.providers.rateLimit.database.types.rateLimitInstance</references>
+    <references>nabu.services.crud.provider.basic.provider</references>
+</node>

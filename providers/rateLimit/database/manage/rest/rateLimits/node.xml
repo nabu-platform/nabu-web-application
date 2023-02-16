@@ -1,1 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2020-04-23T16:24:32.608+02:00" lastModified="2020-04-23T16:44:45.811+02:00" leaf="true" version="11"><environmentId>apollo</environmentId><hidden>false</hidden><properties/><references>nabu.web.application.Services.rateLimits</references><references>nabu.web.application.providers.rateLimit.database.manage.rest.rateLimitList</references></node>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2020-04-23T16:24:32.608+02:00" deprecated="2022-11-28T10:41:57.880+01:00" lastModified="2022-11-28T08:49:10.002+01:00" leaf="true" version="17">
+    <environmentId>apollo</environmentId>
+    <hidden>false</hidden>
+    <locked>false</locked>
+    <properties/>
+    <references>nabu.web.application.Services.rateLimits</references>
+    <references>nabu.web.application.providers.rateLimit.database.manage.rest.rateLimitList</references>
+</node>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<node artifactManager="be.nabu.eai.module.data.model.DataModelManager" created="2021-02-18T17:54:08.988+01:00" deprecated="2022-11-28T10:41:57.807+01:00" lastModified="2021-02-18T17:54:13.813+01:00" leaf="true" version="3">
+    <environmentId>apollo</environmentId>
+    <hidden>false</hidden>
+    <locked>false</locked>
+    <properties/>
+</node>

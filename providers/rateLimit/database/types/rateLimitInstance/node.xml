@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<node artifactManager="be.nabu.eai.module.types.structure.StructureManager" created="2020-04-22T21:40:28.296+02:00" lastModified="2021-09-08T13:13:23.240+02:00" leaf="true" version="18">
+<node artifactManager="be.nabu.eai.module.types.structure.StructureManager" created="2020-04-22T21:40:28.296+02:00" deprecated="2022-11-28T10:41:57.784+01:00" lastModified="2021-09-08T13:13:23.240+02:00" leaf="true" version="18">
     <environmentId>apollo</environmentId>
     <hidden>false</hidden>
+    <locked>false</locked>
     <properties/>
     <references>java.util.UUID</references>
     <references>nabu.web.application.providers.rateLimit.database.types.rateLimitRule</references>

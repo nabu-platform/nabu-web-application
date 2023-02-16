@@ -1,1 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2020-04-23T16:24:37.527+02:00" lastModified="2020-04-23T16:25:04.667+02:00" leaf="true" version="4"><environmentId>apollo</environmentId><hidden>false</hidden><properties/><references>nabu.web.application.providers.rateLimit.database.manage.rest.applicationList</references><references>nabu.web.application.Services.list</references></node>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2020-04-23T16:24:37.527+02:00" deprecated="2022-11-28T10:41:57.905+01:00" lastModified="2022-11-28T08:43:40.084+01:00" leaf="true" version="8">
+    <environmentId>apollo</environmentId>
+    <hidden>false</hidden>
+    <locked>false</locked>
+    <properties/>
+    <references>nabu.web.application.providers.rateLimit.database.manage.rest.applicationList</references>
+    <references>nabu.web.application.Services.list</references>
+</node>

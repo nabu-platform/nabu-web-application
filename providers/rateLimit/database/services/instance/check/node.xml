@@ -1,1 +1,16 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><node artifactManager="be.nabu.eai.module.services.jdbc.JDBCServiceManager" created="2020-04-23T11:37:26.636+02:00" lastModified="2020-04-23T16:52:03.295+02:00" leaf="false" version="27"><environmentId>apollo</environmentId><hidden>false</hidden><properties/><references>java.lang.String</references><references>java.lang.Long</references><references>java.lang.Integer</references><references>java.lang.Boolean</references><references>nabu.web.application.providers.rateLimit.database.services.instance.check.parameters</references><references>be.nabu.libs.types.api.KeyValuePair</references><references>nabu.web.application.providers.rateLimit.database.services.instance.check.results</references><references>java.lang.Long</references><references>java.lang.Boolean</references></node>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<node artifactManager="be.nabu.eai.module.services.jdbc.JDBCServiceManager" created="2020-04-23T11:37:26.636+02:00" deprecated="2022-11-28T10:41:57.815+01:00" lastModified="2020-04-23T16:52:03.295+02:00" leaf="false" version="27">
+    <environmentId>apollo</environmentId>
+    <hidden>false</hidden>
+    <locked>false</locked>
+    <properties/>
+    <references>java.lang.String</references>
+    <references>java.lang.Long</references>
+    <references>java.lang.Integer</references>
+    <references>java.lang.Boolean</references>
+    <references>nabu.web.application.providers.rateLimit.database.services.instance.check.parameters</references>
+    <references>be.nabu.libs.types.api.KeyValuePair</references>
+    <references>nabu.web.application.providers.rateLimit.database.services.instance.check.results</references>
+    <references>java.lang.Long</references>
+    <references>java.lang.Boolean</references>
+</node>
