@@ -15,5 +15,21 @@
 			<groupId>nabu.protocols.http</groupId>
 			<artifactId>server</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>nabu.misc</groupId>
+			<artifactId>keystore</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>nabu.services</groupId>
+			<artifactId>glue</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>nabu.types</groupId>
+			<artifactId>structure</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>nabu</groupId>
+			<artifactId>utils</artifactId>
+		</dependency>
 	</dependencies>
 </project>

@@ -1,4 +1,0 @@
-<structure interface="be.nabu.eai.module.web.application.api.RateLimitProvider.log" name="pipeline">
-    <structure name="input"/>
-    <structure name="output"/>
-</structure>

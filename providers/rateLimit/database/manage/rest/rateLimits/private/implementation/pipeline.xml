@@ -1,4 +1,0 @@
-<structure interface="nabu.web.application.providers.rateLimit.database.manage.rest.rateLimits:api" name="pipeline">
-    <structure name="input"/>
-    <structure name="output"/>
-</structure>

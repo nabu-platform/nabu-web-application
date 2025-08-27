@@ -1,3 +1,0 @@
-<structure name="application">
-    <field name="id" type="java.lang.String"/>
-</structure>
